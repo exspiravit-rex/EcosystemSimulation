@@ -1,16 +1,5 @@
-
 import java.awt.Point;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author 1269170
- */
 public class Animal {
      
     private int age;
@@ -94,6 +83,4 @@ public class Animal {
     public Point getLocation() {
         return location;
     }
-    
-    
 }

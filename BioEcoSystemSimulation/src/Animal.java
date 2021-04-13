@@ -1,3 +1,6 @@
+
+import java.awt.Point;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,6 +19,7 @@ public class Animal {
     private int strength; // affected by age
     private boolean move;
     private boolean fight;
+    private Point location; 
     
     
     public Animal() {
@@ -25,16 +29,18 @@ public class Animal {
         strength = 0;
         move = false;
         fight = false;
+        location = new Point(0, 0);
         
     }
     
-    public Animal(int age, int hunger, int thirst, int strength, boolean move, boolean fight) {
+    public Animal(int age, int hunger, int thirst, int strength, boolean move, boolean fight, Point location) {
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;
         this.strength = strength;
         this.move = move;
         this.fight = fight;
+        this.location = location;
         
     }
     
@@ -54,11 +60,40 @@ public class Animal {
     }
     
     public void setHunger(int hunger) {
+        // sets hunger to param
         this.hunger = hunger;
     }
     
+    public int getThirst() {
+        // returns thirst of animal
+        return thirst;
+    }
     
+    public void setThirst(int thirst) {
+        // set thirst to param
+        this.thirst = thirst;
+    }
     
+    public int getStrength() {
+        // return strength
+        return strength;
+    }
+    
+    public void setStrength(int strength) {
+        // set strength
+        this.strength = strength;
+    }
+    
+    public String getStatus() {
+        if(move = true) {
+            return "on the move";
+        }
+        return "resting";
+    }
+    
+    public Point getLocation() {
+        return location;
+    }
     
     
 }

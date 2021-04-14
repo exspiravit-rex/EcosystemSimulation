@@ -6,6 +6,7 @@ public class Animal {
     private int hunger; // affected by move
     private int thirst; // affected by move
     private int strength; // affected by age
+    private int speed;
     private boolean move;
     private boolean fight;
     private Point location; 

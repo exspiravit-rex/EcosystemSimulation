@@ -1,18 +1,22 @@
 import java.awt.Point;
 
 public class Animal {
-     
+    
+    protected int[][] map; //stores map
+    protected int gridSize; // stores the size of the grid
     private int age;
     private int hunger; // affected by move
     private int thirst; // affected by move
     private int strength; // affected by age
-    private int speed;
+    //private int speed;
     private boolean move;
     private boolean fight;
-    private Point location; 
+    private Point location; // stores row & column of position in grid
     
     
-    public Animal() {
+    public Animal(int gridSize, int[][] map) {
+        this.map = map;
+        this.gridSize = gridSize;
         age = 1;
         hunger = 100;
         thirst = 100;
@@ -23,7 +27,8 @@ public class Animal {
         
     }
     
-    public Animal(int age, int hunger, int thirst, int strength, boolean move, boolean fight, Point location) {
+    public Animal(int gridSize, int age, int hunger, int thirst, int strength, boolean move, boolean fight, Point location) {
+        this.gridSize = gridSize;
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;

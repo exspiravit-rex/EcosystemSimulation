@@ -7,8 +7,8 @@ public class Prey extends Animal {
         super(gridSize, map);
     }
     
-    public Prey(int gridSize, int age, int hunger, int thirst, int strength, boolean move, boolean fight, Point location) {
-        super(gridSize, age, hunger, thirst, strength, move, fight, location);
+    public Prey(int gridSize, int age, int hunger, int thirst, int strength, Point location) {
+        super(gridSize, age, hunger, thirst, strength, location);
     }
     
     

@@ -7,17 +7,18 @@ public class Predator extends Animal {
         super(gridSize, map);
     }
     
-    public Predator(int gridSize, int age, int hunger, int thirst, int strength, boolean move, boolean fight, Point location) {
-        super(gridSize, age, hunger, thirst, strength, move, fight, location);
+    public Predator(int gridSize, int age, int hunger, int thirst, int strength, Point location) {
+        super(gridSize, age, hunger, thirst, strength, location);
     }
-    
-    public boolean isOccupied(int r, int c) {
-        if(r < 0 || c < 0 || r >= gridSize || c >= gridSize) {
-            return false;
-        }
-        if (map[r][c] != null)
+    /*
+    public boolean isOccupied(Animal a) {
+        //if(r < 0 || c < 0 || r >= gridSize || c >= gridSize) {
+        //    return false;
+        //}
+        if (a.getClass().equals("Animal"))
             return true;
         else
             return false;
     }
+    */
 }

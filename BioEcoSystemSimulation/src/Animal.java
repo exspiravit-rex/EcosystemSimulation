@@ -27,14 +27,14 @@ public class Animal extends MapGUI{
         
     }
     
-    public Animal(int gridSize, int age, int hunger, int thirst, int strength, boolean move, boolean fight, Point location) {
+    public Animal(int gridSize, int age, int hunger, int thirst, int strength, Point location) {
         this.gridSize = gridSize;
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;
         this.strength = strength;
-        this.move = move;
-        this.fight = fight;
+        this.move = false;
+        this.fight = false;
         this.location = location;
         
     }
@@ -88,5 +88,19 @@ public class Animal extends MapGUI{
     
     public Point getLocation() {
         return location;
+    }
+    
+    public boolean isOccupied(Animal a) {
+        //if(r < 0 || c < 0 || r >= gridSize || c >= gridSize) {
+        //    return false;
+        //}
+        if (a instanceof Prey) {
+            System.out.println(a.getClass());
+            return true;
+        }
+        else {
+            System.out.println(a.getClass());
+            return false;
+        }
     }
 }

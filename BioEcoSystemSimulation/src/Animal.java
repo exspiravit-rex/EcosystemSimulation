@@ -2,7 +2,7 @@ import java.awt.Point;
 
 public class Animal {
     
-    protected int[][] map; //stores map
+    protected Animal[][] map; //stores map
     protected int gridSize; // stores the size of the grid
     private int age;
     private int hunger; // affected by move
@@ -14,7 +14,7 @@ public class Animal {
     private Point location; // stores row & column of position in grid
     
     
-    public Animal(int gridSize, int[][] map) {
+    public Animal(int gridSize, Animal[][] map) {
         this.map = map;
         this.gridSize = gridSize;
         age = 1;

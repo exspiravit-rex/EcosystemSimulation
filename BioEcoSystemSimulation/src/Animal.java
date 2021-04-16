@@ -1,6 +1,6 @@
 import java.awt.Point;
 
-public class Animal {
+public class Animal extends MapGUI{
     
     protected Animal[][] map; //stores map
     protected int gridSize; // stores the size of the grid

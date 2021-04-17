@@ -1,26 +1,42 @@
-
 import java.awt.Point;
+import java.util.Timer;
+import java.util.TimerTask;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author 1269170
- */
 public class MapGUI extends javax.swing.JFrame {
 
+    private Timer timer;
+    private int count = 0;
+    
+    
     /**
      * Creates new form MapGUI
      */
     public MapGUI() {
         initComponents();
-        
     }
 
+    //Creates new Timer object if one does not already exist
+    public void startTimer() {
+     if (timer != null) {
+            System.out.println("Timer is running");
+            return;
+        }
+        //Create a new timer object
+        timer = new java.util.Timer(true);
+        TimerTask task = new TimerTask() {
+            public void run() {
+                tick();
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0, 1000); 
+    }
+    
+    //Step event
+    public void tick() {
+        count++;
+        System.out.println(count);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +47,8 @@ public class MapGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        buttonStart = new javax.swing.JButton();
+        buttonStop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,12 +59,25 @@ public class MapGUI extends javax.swing.JFrame {
             }
         });
 
+        buttonStart.setText("Start Simulation");
+        buttonStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonStartActionPerformed(evt);
+            }
+        });
+
+        buttonStop.setText("Stop Simulation");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(824, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
+                .addComponent(buttonStart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonStop)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(103, 103, 103))
         );
@@ -54,7 +85,10 @@ public class MapGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(buttonStart)
+                    .addComponent(buttonStop))
                 .addContainerGap(575, Short.MAX_VALUE))
         );
 
@@ -67,6 +101,10 @@ public class MapGUI extends javax.swing.JFrame {
         System.out.println(pr.isOccupied(p));
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartActionPerformed
+        startTimer();
+    }//GEN-LAST:event_buttonStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,6 +142,8 @@ public class MapGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonStart;
+    private javax.swing.JButton buttonStop;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

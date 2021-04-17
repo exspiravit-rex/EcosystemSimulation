@@ -18,17 +18,29 @@ public class MapGUI extends javax.swing.JFrame {
     //Creates new Timer object if one does not already exist
     public void startTimer() {
      if (timer != null) {
-            System.out.println("Timer is running");
+            System.out.println("Timer already running");
             return;
         }
         //Create a new timer object
         timer = new java.util.Timer(true);
+        System.out.println("Timer started");
         TimerTask task = new TimerTask() {
             public void run() {
                 tick();
             }
         };
         timer.scheduleAtFixedRate(task, 0, 1000); 
+    }
+    
+    public void stopTimer() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+            System.out.println("Timer stopped");
+        }
+        else {
+            System.out.println("No timer running");
+        }
     }
     
     //Step event
@@ -67,6 +79,11 @@ public class MapGUI extends javax.swing.JFrame {
         });
 
         buttonStop.setText("Stop Simulation");
+        buttonStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonStopActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,6 +122,10 @@ public class MapGUI extends javax.swing.JFrame {
     private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartActionPerformed
         startTimer();
     }//GEN-LAST:event_buttonStartActionPerformed
+
+    private void buttonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopActionPerformed
+        stopTimer();
+    }//GEN-LAST:event_buttonStopActionPerformed
 
     /**
      * @param args the command line arguments

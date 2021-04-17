@@ -58,18 +58,10 @@ public class MapGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         buttonStart = new javax.swing.JButton();
         buttonStop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         buttonStart.setText("Start Simulation");
         buttonStart.addActionListener(new java.awt.event.ActionListener() {
@@ -94,16 +86,13 @@ public class MapGUI extends javax.swing.JFrame {
                 .addComponent(buttonStart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonStop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(103, 103, 103))
+                .addContainerGap(647, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(buttonStart)
                     .addComponent(buttonStop))
                 .addContainerGap(575, Short.MAX_VALUE))
@@ -111,13 +100,6 @@ public class MapGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Prey p = new Prey(5, 1, 100, 100, 1, new Point(0, 0));
-        Predator pr = new Predator(5, 2, 14, 51, 1, new Point(0, 0));
-        System.out.println(pr.isOccupied(p));
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartActionPerformed
         startTimer();
@@ -165,6 +147,5 @@ public class MapGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonStart;
     private javax.swing.JButton buttonStop;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,8 +2,6 @@ import java.awt.Point;
 
 public class Animal extends MapGUI{
     
-    protected Animal[][] map; //stores map
-    protected int gridSize; // stores the size of the grid
     private int age;
     private int hunger; // affected by move
     private int thirst; // affected by move
@@ -14,9 +12,8 @@ public class Animal extends MapGUI{
     private Point location; // stores row & column of position in grid
     
     
-    public Animal(int gridSize, Animal[][] map) {
-        this.map = map;
-        this.gridSize = gridSize;
+    public Animal() {
+        super();
         age = 1;
         hunger = 100;
         thirst = 100;
@@ -27,8 +24,8 @@ public class Animal extends MapGUI{
         
     }
     
-    public Animal(int gridSize, int age, int hunger, int thirst, int strength, Point location) {
-        this.gridSize = gridSize;
+    public Animal(int age, int hunger, int thirst, int strength, Point location) {
+        super();
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;
@@ -90,17 +87,7 @@ public class Animal extends MapGUI{
         return location;
     }
     
-    public boolean isOccupied(Animal a) {
-        //if(r < 0 || c < 0 || r >= gridSize || c >= gridSize) {
-        //    return false;
-        //}
-        if (a instanceof Prey) {
-            System.out.println(a.getClass());
-            return true;
-        }
-        else {
-            System.out.println(a.getClass());
-            return false;
-        }
+    public String toString() {
+        return "Animal";
     }
 }

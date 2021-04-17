@@ -3,13 +3,16 @@ import java.awt.Point;
 public class Prey extends Animal {
     
     
-    public Prey(int gridSize, Animal[][] map) {
-        super(gridSize, map);
+    public Prey() {
+        super();
     }
     
-    public Prey(int gridSize, int age, int hunger, int thirst, int strength, Point location) {
-        super(gridSize, age, hunger, thirst, strength, location);
+    public Prey(int age, int hunger, int thirst, int strength, Point location) {
+        super(age, hunger, thirst, strength, location);
     }
     
+    public String toString() {
+        return "Prey";
+    }
     
 }

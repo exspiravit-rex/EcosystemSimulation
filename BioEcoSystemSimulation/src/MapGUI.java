@@ -6,13 +6,16 @@ public class MapGUI extends javax.swing.JFrame {
 
     private Timer timer;
     private int count = 0;
-    
+    protected MapGUI[][] map; // stores map
+    protected int gridSize; // stores the size of the grid
     
     /**
      * Creates new form MapGUI
      */
     public MapGUI() {
         initComponents();
+        map = new MapGUI[5][5];
+        gridSize = 5;
     }
 
     //Creates new Timer object if one does not already exist
@@ -107,8 +110,80 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void buttonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopActionPerformed
         stopTimer();
+        generateMap();
+        System.out.println(map[3][0].isOccupied(3, 3));
     }//GEN-LAST:event_buttonStopActionPerformed
-
+    
+    public void generateMap() {
+        
+        // fill in grid
+        for(int r = 0; r < gridSize; r++) {
+            for(int c = 0; c < gridSize; c++) {
+                int type = (int)(Math.random()*3);
+                
+                if(type == 0) {
+                    map[r][c] = new Animal();
+                }
+                else if(type == 1) {
+                    map[r][c] = new Predator();
+                }
+                else {
+                    map[r][c] = new Prey();
+                }
+            }
+        }
+        map[0][0] = new Prey();
+        map[3][3] = new Prey();
+        map[4][0] = new Prey();
+        
+        
+        // print map
+        for(int r = 0; r < gridSize; r++) {
+            for(int c = 0; c < gridSize; c++) {
+                System.out.print(map[r][c] + " ");
+            }
+            System.out.println("");
+        }
+        
+        
+    }
+    
+    public boolean isOccupied(int r, int c) {
+        if(r < 0 || c < 0 || r >= gridSize || c >= gridSize) {
+            System.out.println(r + " " + c);
+            System.out.println("out of grid");
+            return false;
+        }
+        if (map[r][c] instanceof Prey) {
+            System.out.println(r + " " + c);
+            System.out.println("it's a prey");
+            return true;
+        }
+        else {
+            System.out.println(map[r][c] + " " + r + " " + c);
+            System.out.println("not a prey");
+            return false;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

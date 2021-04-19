@@ -9,30 +9,27 @@ public class Animal extends Ecosystem{
     //private int speed;
     private boolean move;
     private boolean fight;
-    private Point location; // stores row & column of position in grid
     
     
-    public Animal(MapGUI mapGUI) {
-        super(mapGUI);
+    public Animal(MapGUI mapGUI, int r, int c) {
+        super(mapGUI, r, c);
         age = 1;
         hunger = 100;
         thirst = 100;
         strength = 0;
         move = false;
         fight = false;
-        location = new Point(0, 0);
         
     }
     
-    public Animal(MapGUI mapGUI, int age, int hunger, int thirst, int strength, Point location) {
-        super(mapGUI);
+    public Animal(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst, int strength) {
+        super(mapGUI, r, c);
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;
         this.strength = strength;
         this.move = false;
         this.fight = false;
-        this.location = location;
         
     }
     
@@ -83,11 +80,8 @@ public class Animal extends Ecosystem{
         return "resting";
     }
     
-    public Point getLocation() {
-        return location;
-    }
     
     public String toString() {
-        return "Animal";
+        return "Animal at " + getLocation().getX() + ", " + getLocation().getY();
     }
 }

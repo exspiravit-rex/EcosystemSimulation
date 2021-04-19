@@ -3,16 +3,16 @@ import java.awt.Point;
 public class Prey extends Animal {
     
     
-    public Prey(MapGUI mapGUI) {
-        super(mapGUI);
+    public Prey(MapGUI mapGUI, int r, int c) {
+        super(mapGUI, r , c);
     }
     
-    public Prey(MapGUI mapGUI, int age, int hunger, int thirst, int strength, Point location) {
-        super(mapGUI, age, hunger, thirst, strength, location);
+    public Prey(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst, int strength) {
+        super(mapGUI, r, c, age, hunger, thirst, strength);
     }
     
     public String toString() {
-        return "Prey";
+        return "Prey at " + getLocation().getX() + ", " + getLocation().getY();
     }
     
 }

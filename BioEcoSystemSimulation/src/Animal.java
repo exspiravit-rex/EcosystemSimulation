@@ -1,6 +1,6 @@
 import java.awt.Point;
 
-public class Animal extends MapGUI{
+public class Animal extends Ecosystem{
     
     private int age;
     private int hunger; // affected by move
@@ -12,8 +12,8 @@ public class Animal extends MapGUI{
     private Point location; // stores row & column of position in grid
     
     
-    public Animal() {
-        super();
+    public Animal(MapGUI mapGUI) {
+        super(mapGUI);
         age = 1;
         hunger = 100;
         thirst = 100;
@@ -24,8 +24,8 @@ public class Animal extends MapGUI{
         
     }
     
-    public Animal(int age, int hunger, int thirst, int strength, Point location) {
-        super();
+    public Animal(MapGUI mapGUI, int age, int hunger, int thirst, int strength, Point location) {
+        super(mapGUI);
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;

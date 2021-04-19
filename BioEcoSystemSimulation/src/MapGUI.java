@@ -5,17 +5,16 @@ import java.util.TimerTask;
 public class MapGUI extends javax.swing.JFrame {
 
     private Timer timer;
-    private int count = 0;
-    protected MapGUI[][] map; // stores map
-    protected int gridSize; // stores the size of the grid
-    
+    private int count = 0;    
+    protected int gridSize = 5; // stores the size of the grid
+    protected Ecosystem[][] map = new Ecosystem[gridSize][gridSize]; // stores map
+
     /**
      * Creates new form MapGUI
      */
     public MapGUI() {
         initComponents();
-        map = new MapGUI[5][5];
-        gridSize = 5;
+        
     }
 
     //Creates new Timer object if one does not already exist
@@ -111,31 +110,29 @@ public class MapGUI extends javax.swing.JFrame {
     private void buttonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopActionPerformed
         stopTimer();
         generateMap();
-        System.out.println(map[3][0].isOccupied(3, 3));
+        System.out.println(map[3][1].isOccupied((int)(Math.random()*4), (int)(Math.random()*4)));
+        System.out.println(map[1][1].isOccupied(0, 0));
+        
     }//GEN-LAST:event_buttonStopActionPerformed
     
     public void generateMap() {
-        
         // fill in grid
         for(int r = 0; r < gridSize; r++) {
             for(int c = 0; c < gridSize; c++) {
                 int type = (int)(Math.random()*3);
-                
                 if(type == 0) {
-                    map[r][c] = new Animal();
+                    map[r][c] = new Animal(this);
                 }
                 else if(type == 1) {
-                    map[r][c] = new Predator();
+                    map[r][c] = new Predator(this);
                 }
-                else {
-                    map[r][c] = new Prey();
+                else if(type == 2){
+                    map[r][c] = new Prey(this);
                 }
             }
         }
-        map[0][0] = new Prey();
-        map[3][3] = new Prey();
-        map[4][0] = new Prey();
-        
+        map[0][0] = new Prey(this);
+        map[1][1] = new Predator(this);
         
         // print map
         for(int r = 0; r < gridSize; r++) {
@@ -148,22 +145,12 @@ public class MapGUI extends javax.swing.JFrame {
         
     }
     
-    public boolean isOccupied(int r, int c) {
-        if(r < 0 || c < 0 || r >= gridSize || c >= gridSize) {
-            System.out.println(r + " " + c);
-            System.out.println("out of grid");
-            return false;
-        }
-        if (map[r][c] instanceof Prey) {
-            System.out.println(r + " " + c);
-            System.out.println("it's a prey");
-            return true;
-        }
-        else {
-            System.out.println(map[r][c] + " " + r + " " + c);
-            System.out.println("not a prey");
-            return false;
-        }
+    public int getGridSize() {
+        return gridSize;
+    }
+    
+    public Ecosystem[][] getMap() {
+        return map;
     }
     
     
@@ -174,10 +161,7 @@ public class MapGUI extends javax.swing.JFrame {
     
     
     
-    
-    
-    
-    
+   
     
     
     

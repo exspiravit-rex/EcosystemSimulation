@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/mabel/OneDrive/Documents/EcosystemSimulation/BioEcoSystemSimulation/src/Animal.java</file>
             <file>file:/C:/Users/mabel/OneDrive/Documents/EcosystemSimulation/BioEcoSystemSimulation/src/Prey.java</file>
             <file>file:/C:/Users/mabel/OneDrive/Documents/EcosystemSimulation/BioEcoSystemSimulation/src/MapGUI.java</file>
             <file>file:/C:/Users/mabel/OneDrive/Documents/EcosystemSimulation/BioEcoSystemSimulation/src/Predator.java</file>
+=======
+            <file>file:/C:/Users/ariel/OneDrive/Documents/My%20stuff/Netbeans/EcosystemSimulation/BioEcoSystemSimulation/src/Animal.java</file>
+            <file>file:/C:/Users/ariel/OneDrive/Documents/My%20stuff/Netbeans/EcosystemSimulation/BioEcoSystemSimulation/src/Prey.java</file>
+            <file>file:/C:/Users/ariel/OneDrive/Documents/My%20stuff/Netbeans/EcosystemSimulation/BioEcoSystemSimulation/src/Ecosystem.java</file>
+            <file>file:/C:/Users/ariel/OneDrive/Documents/My%20stuff/Netbeans/EcosystemSimulation/BioEcoSystemSimulation/src/Predator.java</file>
+            <file>file:/C:/Users/ariel/OneDrive/Documents/My%20stuff/Netbeans/EcosystemSimulation/BioEcoSystemSimulation/src/MapGUI.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

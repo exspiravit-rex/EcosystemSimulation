@@ -79,9 +79,10 @@ public class Animal extends Ecosystem{
         }
         return "resting";
     }
-    
-    
+
     public String toString() {
-        return "Animal at " + getLocation().getX() + ", " + getLocation().getY();
+        return "Animal at " + getLocation();
     }
+    
+    
 }

@@ -12,7 +12,16 @@ public class Prey extends Animal {
     }
     
     public String toString() {
-        return "Prey at " + getLocation().getX() + ", " + getLocation().getY();
+        return "Prey at " + getLocation();
     }
     
+    public boolean findPredator(int r, int c) {
+        if(r > getRow() + 2 || r < getRow() - 2 || c > getCol() + 2 || c < getCol() - 2) {
+            return false; // out of range
+        }
+        else {
+            return( super.isOccupied(r, c) && mapGUI.getMap()[r][c] instanceof Predator);
+        }
+        
+    }
 }

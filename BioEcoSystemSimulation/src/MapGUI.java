@@ -109,8 +109,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void buttonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopActionPerformed
         stopTimer();
-        map[0][0] = new Predator(this, 0, 0);
-        System.out.println(map[1][1].isOccupied(0, 0));
+        System.out.println(((Predator)map[1][1]).checkSurroundings(map[1][1].getRow(), map[1][1].getCol()));
         System.out.println(map[0][0].getLocation());
     }//GEN-LAST:event_buttonStopActionPerformed
     

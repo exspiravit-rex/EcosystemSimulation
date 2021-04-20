@@ -46,11 +46,9 @@ public class Ecosystem {
             return false;
         }
         if (mapGUI.getMap()[r][c] instanceof Ecosystem) {
-            System.out.println(mapGUI.getMap()[r][c]);
             return true;
         }
         else {
-            System.out.println(mapGUI.getMap()[r][c]);
             return false;
         }
     }

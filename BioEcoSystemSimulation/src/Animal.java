@@ -5,7 +5,7 @@ public class Animal extends Ecosystem{
     private int age;
     private int hunger; // affected by move
     private int thirst; // affected by move
-    private int strength; // affected by age
+    private int strength; // affected by age + hunger + thirst
     //private int speed;
     private boolean move;
     private boolean fight;
@@ -84,5 +84,24 @@ public class Animal extends Ecosystem{
         return "Animal at " + getLocation();
     }
     
-    
+    public void drinkWater() {
+        for(int row = getRow() - 1; row < getRow() + 2; row++) {
+            for(int col = getCol() - 1; col < getRow() + 2; col++) {
+                if(isOccupied(row, col)) {
+                    if(mapGUI.getMap()[row][col] instanceof Water) {//&& ((Water)mapGUI.getMap()[row][col]).getWater() <= 0
+                        ((Water)mapGUI.getMap()[row][col]).setWater(100 - getThirst());
+                        setThirst(100);
+                        System.out.println("Drank from " + mapGUI.getMap()[row][col]);
+                        break;
+                    }
+                    else{
+                        System.out.println("No water here");
+                    }
+                }
+            }
+            if(getThirst() == 100) {
+                break;
+            }
+        }
+    }
 }

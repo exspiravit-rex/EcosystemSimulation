@@ -7,8 +7,8 @@ public class Predator extends Animal {
         super(mapGUI, r, c);
     }
     
-    public Predator(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst, int strength) {
-        super(mapGUI, r, c, age, hunger, thirst, strength);
+    public Predator(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst) {
+        super(mapGUI, r, c, age, hunger, thirst);
     }
     
     public String toString() {
@@ -29,7 +29,7 @@ public class Predator extends Animal {
     }
     
     public boolean isCloser(int closeR, int closeC, int tempR, int tempC) {
-        if((Math.abs(getRow() - closeR) + (Math.abs(getCol() - closeC))) < (Math.abs(getRow() - tempR)) + (Math.abs(getCol() - tempC))) {
+        if((Math.abs(getRow() - closeR) + (Math.abs(getCol() - closeC))) <= (Math.abs(getRow() - tempR)) + (Math.abs(getCol() - tempC))) {
             return true;
         }
         return false;
@@ -48,12 +48,14 @@ public class Predator extends Animal {
                     tempR = row;
                     tempC = col;
                     System.out.println("found prey at " + row + " " +  col);
+                    
+                    if(isCloser(closestR, closestC, tempR, tempC) == false) {
+                        closestR = tempR;
+                        closestC = tempC;
+                        System.out.println(mapGUI.getMap()[closestR][closestC]);
+                    }
                 }
-                if(isCloser(closestR, closestC, tempR, tempC) == false) {
-                    closestR = tempR;
-                    closestC = tempC;
-                    System.out.println(mapGUI.getMap()[closestR][closestC]);
-                }
+                
             }
         }
         return new Point(closestR, closestC);

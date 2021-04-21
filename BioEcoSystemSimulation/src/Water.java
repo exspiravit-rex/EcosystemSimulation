@@ -1,30 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.awt.Color;
+import java.awt.Graphics;
 
-/**
- *
- * @author ariel
- */
+
 public class Water extends Ecosystem{
     private int amount;
+    private Color myColor;
     
     public Water(MapGUI mapGUI, int r, int c) {
         super(mapGUI, r, c);
         amount = 100;
+        myColor = Color.BLUE;
     }
     
     public int getWater() {
         return amount;
     }
     
-    public void setWater(int taken) {
+    public void changeWater(int taken) {
         amount -= taken;
+        if(amount <= 100) {
+            amount++;
+        }
     }
     
     public String toString() {
         return "Water at " + getRow() + ", " + getCol();
+    }
+    
+    public void draw(Graphics g) {
+        g.setColor(myColor);
+        g.fillOval(getRow(), getCol(), 20, 20);
     }
 }

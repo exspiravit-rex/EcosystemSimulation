@@ -109,9 +109,12 @@ public class MapGUI extends javax.swing.JFrame {
 
     private void buttonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopActionPerformed
         stopTimer();
-        System.out.println(((Predator)map[1][1]).checkSurroundings(map[1][1].getRow(), map[1][1].getCol()));
-        
-        System.out.println(map[0][0].getLocation());
+        //System.out.println(((Predator)map[1][1]).checkSurroundings(map[1][1].getRow(), map[1][1].getCol()));
+        //System.out.println(((Prey)map[0][0]).checkSurroundings(map[0][0].getRow(), map[0][0].getCol()));
+        ((Pig)map[0][0]).setHunger(10);
+        System.out.println(((Pig)map[0][0]).getHunger());
+        ((Pig)map[0][0]).eatPlant();
+        System.out.println(((Pig)map[0][0]).getHunger());
     }//GEN-LAST:event_buttonStopActionPerformed
     
     public void generateMap() {
@@ -120,22 +123,22 @@ public class MapGUI extends javax.swing.JFrame {
             for(int c = 0; c < gridSize; c++) {
                 int type = (int)(Math.random()*4);
                 if(type == 0) {
-                    map[r][c] = new Animal(this, r, c);
+                    map[r][c] = new Water(this, r, c);
                 }
                 else if(type == 1) {
-                    map[r][c] = new Predator(this, r, c);
+                    map[r][c] = new Tiger(this, r, c);
                 }
                 else if(type == 2){
-                    map[r][c] = new Prey(this, r, c);
+                    map[r][c] = new Pig(this, r, c);
                 }
                 else {
-                    map[r][c] = new Water(this, r, c);
+                    map[r][c] = new Plant(this, r, c);
                 }
             }
         }
-        map[0][0] = new Prey(this, 0, 0);
-        map[1][1] = new Predator(this, 1, 1);
-        map[0][1] = new Water(this, 0, 1);
+        map[0][0] = new Pig(this, 0, 0);
+        map[1][1] = new Tiger(this, 1, 1);
+        map[0][1] = new Plant(this, 0, 1);
         
         // print map
         for(int r = 0; r < gridSize; r++) {

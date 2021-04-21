@@ -5,8 +5,7 @@ public class Animal extends Ecosystem{
     private int age;
     private int hunger; // affected by move
     private int thirst; // affected by move
-    private int strength; // affected by age + hunger + thirst
-    //private int speed;
+    private int speed;
     private boolean move;
     private boolean fight;
     
@@ -16,18 +15,16 @@ public class Animal extends Ecosystem{
         age = 1;
         hunger = 100;
         thirst = 100;
-        strength = 0;
         move = false;
         fight = false;
         
     }
     
-    public Animal(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst, int strength) {
+    public Animal(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst) {
         super(mapGUI, r, c);
         this.age = age;
         this.hunger = hunger;
         this.thirst = thirst;
-        this.strength = strength;
         this.move = false;
         this.fight = false;
         
@@ -63,15 +60,14 @@ public class Animal extends Ecosystem{
         this.thirst = thirst;
     }
     
-    public int getStrength() {
-        // return strength
-        return strength;
+    public int getSpeed() {
+        // gets the speed
+        return speed;
     }
     
-    public void setStrength(int strength) {
-        // set strength
-        this.strength = strength;
-    }
+    public void setSpeed(int s) {
+        speed = s;
+    } 
     
     public String getStatus() {
         if(move = true) {
@@ -88,8 +84,8 @@ public class Animal extends Ecosystem{
         for(int row = getRow() - 1; row < getRow() + 2; row++) {
             for(int col = getCol() - 1; col < getRow() + 2; col++) {
                 if(isOccupied(row, col)) {
-                    if(mapGUI.getMap()[row][col] instanceof Water) {//&& ((Water)mapGUI.getMap()[row][col]).getWater() <= 0
-                        ((Water)mapGUI.getMap()[row][col]).setWater(100 - getThirst());
+                    if(mapGUI.getMap()[row][col] instanceof Water) { //&& ((Water)mapGUI.getMap()[row][col]).getWater() <= 0
+                        ((Water)mapGUI.getMap()[row][col]).changeWater(100 - getThirst());
                         setThirst(100);
                         System.out.println("Drank from " + mapGUI.getMap()[row][col]);
                         break;

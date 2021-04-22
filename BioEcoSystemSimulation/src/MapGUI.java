@@ -10,7 +10,7 @@ public class MapGUI extends javax.swing.JFrame {
 
     private Timer timer;
     private int count = 0;    
-    protected int gridSize = 5; // stores the size of the grid
+    protected int gridSize = 25; // stores the size of the grid
     protected Ecosystem[][] map = new Ecosystem[gridSize][gridSize]; // stores map
 
     protected int[][] grid = new int[gridSize][gridSize]; //create the matrix    (row major)     
@@ -37,6 +37,7 @@ public class MapGUI extends javax.swing.JFrame {
         setUpImageBuffer();
         setLocationRelativeTo(null);
         setUpColors();
+        clearGrid();
         draw();
     }
 
@@ -239,20 +240,24 @@ public class MapGUI extends javax.swing.JFrame {
         
         for(int r = 0; r < gridSize; r++) {
             for(int c = 0; c < gridSize; c++) {
-                int type = (int)(Math.random()*4);
-                if(type == 0) {
-                    map[r][c] = new Water(this, r, c);
+                //chance of spawning an object on a grid square
+                int spawn = (int)(Math.random()*4);
+                if (spawn == 0) {
+                    int type = (int)(Math.random()*4);
+                    if(type == 0) {
+                        map[r][c] = new Water(this, r, c);
+                    }
+                    else if(type == 1) {
+                        map[r][c] = new Tiger(this, r, c);
+                    }
+                    else if(type == 2){
+                        map[r][c] = new Pig(this, r, c);
+                    }
+                    else {
+                        map[r][c] = new Plant(this, r, c);
+                    }
+                    ecosystemMap.add(map[r][c]); //add the object to the arraylist of objects on the map
                 }
-                else if(type == 1) {
-                    map[r][c] = new Tiger(this, r, c);
-                }
-                else if(type == 2){
-                    map[r][c] = new Pig(this, r, c);
-                }
-                else {
-                    map[r][c] = new Plant(this, r, c);
-                }
-                ecosystemMap.add(map[r][c]); //add the object to the arraylist of objects on the map
             }
         }
         

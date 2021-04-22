@@ -16,6 +16,7 @@ public class Tiger extends Predator {
         super(mapGUI, r, c, age, hunger, thirst);
     }
     
+    //Drawing is done in the MapGUI class
     public void draw(Graphics g) {
         g.setColor(myColor);
         g.fillOval(getRow(), getCol(), 20, 20);

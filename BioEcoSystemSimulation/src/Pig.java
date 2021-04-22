@@ -15,6 +15,7 @@ public class Pig extends Prey{
     }
     
     // draw the object on graphics object
+    //Drawing is done in the MapGUI class
     public void draw(Graphics g) {
         g.setColor(myColor);
         g.fillOval(getRow(), getCol(), 20, 20);

@@ -1,4 +1,8 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,14 +13,35 @@ public class MapGUI extends javax.swing.JFrame {
     protected int gridSize = 5; // stores the size of the grid
     protected Ecosystem[][] map = new Ecosystem[gridSize][gridSize]; // stores map
 
+    protected int[][] grid = new int[gridSize][gridSize]; //create the matrix    (row major)     
+    private final int squareSize = 20; //the size length of individual squares in pixels
+    private final int gridCount = gridSize * squareSize;  //size of entire draw grid in pixels
+    private final int offSet = 50;  //how far from top/left edge do we draw the grid
+    
+    private int penColor = 0; //keeps track of current drawing color
+    private Color[] colors; //our array of colors
+    private Image ib;  //we do all drawing onto this image, it acts as an image buffer
+    private Graphics ibg;  //will be set to our image buffer's graphic object    
+
+    private Color borderColor = new Color(20, 20, 20);    
+    
+    //MAY NEED TO BE PUBLIC
+    private ArrayList<Ecosystem> ecosystemMap = new ArrayList<Ecosystem>(); //keeps track of the objects in the map
+    
     /**
      * Creates new form MapGUI
      */
     public MapGUI() {
         initComponents();
         generateMap();
+        setUpImageBuffer();
+        setLocationRelativeTo(null);
+        setUpColors();
+        draw();
     }
 
+    //TIMER OBJECT
+    
     //Creates new Timer object if one does not already exist
     public void startTimer() {
      if (timer != null) {
@@ -49,6 +74,102 @@ public class MapGUI extends javax.swing.JFrame {
     public void tick() {
         count++;
         System.out.println(count);
+        //clearGrid();
+        //add movement and other action methods
+        drawObjects();
+    }
+    
+    //GRAPHICS
+    
+    //set the image (buffer) to a new image of the correct size
+    public void setUpImageBuffer(){
+        ib = this.createImage(gridCount + 1,gridCount + 1);
+        ibg = ib.getGraphics();
+    }
+    
+    //Add colors
+    public void setUpColors(){
+        colors = new Color[6];
+        colors[0] = Color.darkGray;
+        colors[1] = Color.white; //background
+        colors[2] = Color.orange; //tiger
+        colors[3] = Color.pink; //pig
+        colors[4] = Color.green; //plant
+        colors[5] = Color.blue; //water
+    }
+    
+    //fills the grid with 1's (represents white!)
+    public void clearGrid(){
+        for(int r = 0; r < gridSize; r++) {
+            for(int c = 0; c < gridSize; c++) {
+                grid[r][c] = 1;
+            }
+        }
+        draw();
+    }
+    
+    //set a square in the grid to the color value as long as the values are valid
+    public void colorSquare(int row, int col, int colorValue){
+        grid[row][col] = colorValue;
+        draw();
+    }
+    
+    //Draws all of the objects in the arraylist ecosystemMap, which contains all of the ecosystem objects   
+    public void drawObjects() {
+        //set color to corresponding color for each object
+        for (int k = 0; k < ecosystemMap.size(); k++) {
+            if (ecosystemMap.get(k) instanceof Predator) {
+                penColor = 2;
+            }
+            else if (ecosystemMap.get(k) instanceof Prey) {
+                penColor = 3;
+            }
+            else if (ecosystemMap.get(k) instanceof Plant) {
+                penColor = 4;
+            }
+            else if (ecosystemMap.get(k) instanceof Water) {
+                penColor = 5;
+            }
+            colorSquare(ecosystemMap.get(k).getRow(), ecosystemMap.get(k).getCol(), penColor);  
+        }
+    }
+    
+    //draws the image based on the values stored in the grid.
+    //we will draw on the image buffer's graphics object and then when we are
+    //all done we will copy the image buffer onto the Frame's graphic object.
+    public void draw(){
+        
+        //clear the area, draw white background
+        ibg.clearRect(0, 0, gridCount,gridCount);
+        ibg.setColor(Color.white);
+        ibg.fillRect(0, 0, gridCount, gridCount);
+        
+        //draws individual squares (pass this method the frames graphics object
+        drawSquares(ibg);
+        
+        //draws a black border around edge of grid
+        ibg.setColor(Color.black);
+        ibg.drawRect(0,0,gridCount,gridCount);
+        
+        //all done drawing your stuff onto the image buffer?
+        //get the frame's graphics object and draw our image buffer onto the frame
+        Graphics g = this.getGraphics();
+        g.drawImage(ib,offSet,offSet,this);
+    }
+    
+    //draws the individual colored squares that make the grid using the values
+    //stored in the grid matrix.
+    public void drawSquares(Graphics g){
+       //draw each square (remember that squareSize is size of each square...
+       g.setColor(Color.black);
+       for(int r=0; r<gridSize; r++){
+           for(int c=0; c<gridSize; c++) {
+               g.setColor(colors[ grid[r][c] ] );
+               g.fillRect(c*squareSize, r*squareSize, squareSize, squareSize);      
+               g.setColor(borderColor);
+               g.drawRect(c*squareSize, r*squareSize, squareSize, squareSize);
+           }
+       }
     }
     
     /**
@@ -84,20 +205,20 @@ public class MapGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(buttonStart)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonStop)
-                .addContainerGap(647, Short.MAX_VALUE))
+                .addContainerGap(788, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonStop)
+                    .addComponent(buttonStart))
+                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonStart)
-                    .addComponent(buttonStop))
-                .addContainerGap(575, Short.MAX_VALUE))
+                .addComponent(buttonStart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonStop)
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,6 +252,7 @@ public class MapGUI extends javax.swing.JFrame {
                 else {
                     map[r][c] = new Plant(this, r, c);
                 }
+                ecosystemMap.add(map[r][c]); //add the object to the arraylist of objects on the map
             }
         }
         

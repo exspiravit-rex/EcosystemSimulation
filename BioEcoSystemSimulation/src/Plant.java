@@ -23,13 +23,17 @@ public class Plant extends Ecosystem{
     }
     
     public int getHeight() {
-        return 10;
+        return height;
     }
     
     public void changeHeight() {
         height--;
-        if(height <= 10) {
-            height+= 0.5;//regrowing
+    }
+    
+    public void regrowing() {
+        height += 0.5;
+        if(height >= 10) {
+            height = 10;
         }
     }
     

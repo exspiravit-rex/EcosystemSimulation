@@ -55,7 +55,6 @@ public class Predator extends Animal {
                         System.out.println(mapGUI.getMap()[closestR][closestC]);
                     }
                 }
-                
             }
         }
         return new Point(closestR, closestC);

@@ -5,9 +5,9 @@ public class Animal extends Ecosystem{
     private int age;
     private int hunger; // affected by move
     private int thirst; // affected by move
-    private int speed;
     private boolean move;
     private boolean fight;
+    private int[] directions = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     
     
     public Animal(MapGUI mapGUI, int r, int c) {
@@ -59,15 +59,6 @@ public class Animal extends Ecosystem{
         // set thirst to param
         this.thirst = thirst;
     }
-    
-    public int getSpeed() {
-        // gets the speed
-        return speed;
-    }
-    
-    public void setSpeed(int s) {
-        speed = s;
-    } 
     
     public String getStatus() {
         if(move = true) {

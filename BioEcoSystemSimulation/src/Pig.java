@@ -24,4 +24,5 @@ public class Pig extends Prey{
         return "Pig at " + getRow() + ", " + getCol();
     }
     
+    
 }

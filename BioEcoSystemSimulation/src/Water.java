@@ -18,8 +18,12 @@ public class Water extends Ecosystem{
     
     public void changeWater(int taken) {
         amount -= taken;
-        if(amount <= 100) {
-            amount++;
+    }
+    
+    public void refill() {
+        amount+= 10;
+        if(amount >= 100) {
+            amount = 100;
         }
     }
     

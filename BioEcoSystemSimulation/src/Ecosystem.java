@@ -13,13 +13,11 @@ import java.awt.Point;
  */
 public class Ecosystem {
     protected MapGUI mapGUI;
-    private Point location; // stores row & column of position in grid
     private int locR; // stores row of position in Map
     private int locC; // stores column of position in Map
     
     public Ecosystem(MapGUI mapGUI, int r, int c) {
         this.mapGUI = mapGUI;
-        location = new Point(r, c);
         locR = r;
         locC = c;
     }
@@ -39,6 +37,12 @@ public class Ecosystem {
     public int getCol() {
         return locC;
     }
+    
+    public void setLocation(int r, int c) {
+        locR = r;
+        locC = c;
+    }
+    
 
     public boolean isOccupied(int r, int c) {
         if(r < 0 || c < 0 || r >= mapGUI.getGridSize() || c >= mapGUI.getGridSize()) {

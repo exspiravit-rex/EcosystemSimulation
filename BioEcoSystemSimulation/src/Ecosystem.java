@@ -46,7 +46,7 @@ public class Ecosystem {
 
     public boolean isOccupied(int r, int c) {
         if(r < 0 || c < 0 || r >= mapGUI.getGridSize() || c >= mapGUI.getGridSize()) {
-            System.out.println("out of grid");
+            // System.out.println("out of grid");
             return false;
         }
         if (mapGUI.getMap()[r][c] instanceof Ecosystem) {

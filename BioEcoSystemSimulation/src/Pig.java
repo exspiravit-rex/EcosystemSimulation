@@ -10,8 +10,8 @@ public class Pig extends Prey{
         Color myColor = Color.PINK;
     }
     
-    public Pig(MapGUI mapGUI, int r, int c, int age, int hunger, int thirst) {
-        super(mapGUI, r, c, age, hunger, thirst);
+    public Pig(MapGUI mapGUI, int r, int c, int hunger, int thirst) {
+        super(mapGUI, r, c, hunger, thirst);
     }
     
     // draw the object on graphics object

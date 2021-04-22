@@ -12,7 +12,7 @@ public class MapGUI extends javax.swing.JFrame {
     private int count = 0;    
     protected int gridSize = 25; // stores the size of the grid
     protected Ecosystem[][] map = new Ecosystem[gridSize][gridSize]; // stores map
-
+    
     protected int[][] grid = new int[gridSize][gridSize]; //create the matrix    (row major)     
     private final int squareSize = 20; //the size length of individual squares in pixels
     private final int gridCount = gridSize * squareSize;  //size of entire draw grid in pixels
@@ -74,9 +74,39 @@ public class MapGUI extends javax.swing.JFrame {
     //Step event
     public void tick() {
         count++;
-        System.out.println(count);
-        //clearGrid();
+        System.out.println("Tick " + count);
+        drawObjects();
+        clearGrid();
         //add movement and other action methods
+        for(int r = 0; r < gridSize; r++) {
+            for(int c = 0; c < gridSize; c++) {
+                if(map[r][c] instanceof Tiger) {
+                    if(((Tiger)map[r][c]).getMoved() == false) {
+                        ((Tiger)map[r][c]).move();
+                    }
+                }
+                else if(map[r][c] instanceof Pig) {
+                    if(((Pig)map[r][c]).getMoved() == false) {
+                        ((Pig)map[r][c]).move();
+                    }
+                }
+                else if(map[r][c] instanceof Water) {
+                    ((Water)map[r][c]).refill();
+                }
+                else if(map[r][c] instanceof Plant) {
+                    ((Plant)map[r][c]).regrowing();
+                }
+            }
+        }
+        
+        // reset movement for all things
+        for(int r = 0; r < gridSize; r++) {
+            for(int c = 0; c < gridSize; c++) {
+                if(map[r][c] instanceof Animal) {
+                    ((Animal)map[r][c]).setMoved(false);
+                }
+            }
+        }
         drawObjects();
     }
     
@@ -96,7 +126,7 @@ public class MapGUI extends javax.swing.JFrame {
         colors[2] = Color.orange; //tiger
         colors[3] = Color.pink; //pig
         colors[4] = Color.green; //plant
-        colors[5] = Color.blue; //water
+        colors[5] = Color.cyan; //water
     }
     
     //fills the grid with 1's (represents white!)
@@ -248,10 +278,10 @@ public class MapGUI extends javax.swing.JFrame {
                         map[r][c] = new Water(this, r, c);
                     }
                     else if(type == 1) {
-                        map[r][c] = new Tiger(this, r, c);
+                        map[r][c] = new Tiger(this, r, c, (int)(Math.random()*100) + 1, (int)(Math.random()*100) + 1);
                     }
                     else if(type == 2){
-                        map[r][c] = new Pig(this, r, c);
+                        map[r][c] = new Pig(this, r, c, (int)(Math.random()*100) + 1, (int)(Math.random()*100) + 1);
                     }
                     else {
                         map[r][c] = new Plant(this, r, c);
@@ -260,10 +290,6 @@ public class MapGUI extends javax.swing.JFrame {
                 }
             }
         }
-        
-        //map[0][0] = new Pig(this, 0, 0);
-        map[1][1] = new Tiger(this, 1, 1);
-        //map[0][1] = new Plant(this, 0, 1);
         
         // print map
         printMap();
@@ -288,9 +314,13 @@ public class MapGUI extends javax.swing.JFrame {
         return map;
     }
     
+    public ArrayList getEcosystemArray() {
+        return ecosystemMap;
+    }
     
-    
-    
+    public void setEcosystemArray(ArrayList arr) {
+        ecosystemMap = arr;
+    }
     
     
     
